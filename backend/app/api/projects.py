@@ -113,11 +113,21 @@ def update_project(
             detail="Project not found"
         )
 
-    project.name = project_data.name
-    project.github_url = project_data.github_url
-    project.branch = project_data.branch
-    project.jenkins_url = project_data.jenkins_url
-    project.deployment_server = project_data.deployment_server
+    if project_data.name is not None:
+        project.name = project_data.name
+
+    if project_data.github_url is not None:
+        project.github_url = project_data.github_url
+
+    if project_data.branch is not None:
+        project.branch = project_data.branch
+
+    if project_data.jenkins_url is not None:
+        project.jenkins_url = project_data.jenkins_url
+
+    if project_data.deployment_server is not None:
+        project.deployment_server = project_data.deployment_server
+
 
     db.commit()
     db.refresh(project)
